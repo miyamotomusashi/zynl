@@ -98,7 +98,7 @@ namespace web.Areas.Admin.Controllers
                         p.SortOrder = 9999;
                         p.Language = "tr";
                         p.TimeCreated = DateTime.Now;
-                        p.Title = "Haberler";
+                        p.Title = newmodel.ReferenceName;
                         PhotoManager.Save(p);
                     }
                 }
@@ -123,6 +123,8 @@ namespace web.Areas.Admin.Controllers
                 if (isnumber)
                 {
                     References editreference = ReferenceManager.GetReferenceById(nid);
+                    var photos = PhotoManager.GetList(4,nid);
+                    ViewBag.Photos = photos;
                     return View(editreference);
                 }
                 else
@@ -136,7 +138,7 @@ namespace web.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult EditReference(References referencemodel, HttpPostedFileBase uploadfile,IEnumerable<HttpPostedFileBase> attachments)
         {
-           
+             int ID = Convert.ToInt32(RouteData.Values["id"]);
             if (ModelState.IsValid)
             {
                 if (uploadfile != null && uploadfile.ContentLength > 0)
@@ -146,6 +148,55 @@ namespace web.Areas.Admin.Controllers
                     new ImageHelper(240, 240).SaveThumbnail(uploadfile, "/Content/images/references/", Utility.SetPagePlug(referencemodel.ReferenceName) + "_" + rand + Path.GetExtension(uploadfile.FileName));
                     referencemodel.Logo = "/Content/images/references/" + Utility.SetPagePlug(referencemodel.ReferenceName) + "_" + rand + Path.GetExtension(uploadfile.FileName);
                 }
+              
+                foreach (var item in attachments)
+                {
+                    if (item != null && item.ContentLength > 0)
+                    {
+                        item.SaveAs(Server.MapPath("/Content/images/userfiles/") + item.FileName);
+                        Random random = new Random();
+                        int rand = random.Next(1000, 99999999);
+                        string path = Utility.SetPagePlug(referencemodel.ReferenceName) + "_" + rand + Path.GetExtension(item.FileName);
+                        new ImageHelper(1020, 768).SaveThumbnail(item, "/Content/images/userfiles/", path);
+
+                        rand = random.Next(1000, 99999999);
+                        string thumbnail = Utility.SetPagePlug(referencemodel.ReferenceName) + "_" + rand + Path.GetExtension(item.FileName);
+
+                        // Image img = Image.FromFile(Server.MapPath("/Content/images/userfiles/") + item.FileName);
+
+                        Bitmap bmp = new Bitmap(Server.MapPath("/Content/images/userfiles/") + item.FileName);
+
+                        Bitmap bmp2 = new Bitmap(bmp);
+
+                        using (Bitmap Orgbmp = bmp2)
+                        {
+
+                            int sabit = 90;
+                            Size Boyut = new Size(210, 125);
+                            Bitmap ReSizedThmb = new Bitmap(Orgbmp, Boyut);
+                            ReSizedThmb.Save(Server.MapPath("/Content/images/userfiles/") + thumbnail);
+                            bmp.Dispose();
+                            bmp2.Dispose();
+                            Orgbmp.Dispose();
+                            GC.Collect();
+                        }
+
+                        //new ImageHelper(300, 280).ResizeFromStream("/Content/images/userfiles/",thumbnail,img);
+                        Photo p = new Photo();
+                        p.CategoryId = (int)PhotoType.Reference;
+                        p.ItemId = ID;
+                        p.Path = "/Content/images/userfiles/" + path;
+                        p.Thumbnail = "/Content/images/userfiles/" + thumbnail;
+                        p.Online = true;
+                        p.SortOrder = 9999;
+                        p.Language = "tr";
+                        p.TimeCreated = DateTime.Now;
+                        p.Title = "Haberler";
+                        PhotoManager.Save(p);
+                    }
+                }
+
+
 
 
                 if (RouteData.Values["id"] != null)
@@ -157,6 +208,8 @@ namespace web.Areas.Admin.Controllers
                         referencemodel.Language = "tr";
                         referencemodel.ReferenceId = nid;
                         ViewBag.ProcessMessage = ReferenceManager.EditReference(referencemodel);
+                        var photos = PhotoManager.GetList(4,ID);
+                        ViewBag.Photos = photos;
                         return View(referencemodel);
                     }
                     else
@@ -213,11 +266,24 @@ namespace web.Areas.Admin.Controllers
 
         }
 
+        public JsonResult SortPhotos(string list)
+        {
+            JsonList psl = (new JavaScriptSerializer()).Deserialize<JsonList>(list);
+            string[] idsList = psl.list;
+            bool issorted = PhotoManager.SortRecords(idsList);
+            return Json(issorted);
+        }
+
+
         public class JsonList
         {
             public string[] list { get; set; }
         }
-       
 
+        public JsonResult DeletePhoto(int id)
+        {
+            bool isdelete = PhotoManager.Delete(id);
+            return Json(isdelete);
+        }
     }
 }

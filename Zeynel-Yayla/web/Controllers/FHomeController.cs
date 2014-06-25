@@ -25,12 +25,12 @@ namespace web.Controllers
 
     public class FHomeController : Controller
     {
-      
-        
         public ActionResult Index()
         {
+            HomePageWrapperModel model = new HomePageWrapperModel();
+            model.photos = PhotoManager.GetList("tr",0);
   
-            return View();
+            return View(model);
         }
 
         public JsonResult GetImages()

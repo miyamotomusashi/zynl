@@ -17,6 +17,9 @@ namespace web.Models
         public IEnumerable<ServiceGroup> servicegroups { get; set; }
         public Contact contact { get; set; }
 
+        public HomePageWrapperModel()
+        {
+        }
         public HomePageWrapperModel(Contact contact, IEnumerable<ServiceGroup> servicegroups, IEnumerable<ProductGroup> prodgroups, IEnumerable<SectorGroup> sectorgroup, IEnumerable<News> news, IEnumerable<References> references, IEnumerable<Document> docs, IEnumerable<Photo> photos)
         {
             this.news = news;

@@ -55,7 +55,7 @@ namespace BLL.PhotoBL
         {
             using (MainContext db = new MainContext())
             {
-                return db.Photo.Where(d => d.CategoryId == categoryID && d.Language == lang).OrderBy(d => d.SortOrder).OrderBy(d => d.SortOrder).ToList();
+                return db.Photo.Where(d => d.CategoryId == categoryID && d.Language == lang && d.Online == true).OrderBy(d => d.SortOrder).OrderBy(d => d.SortOrder).ToList();
             }
         }
 

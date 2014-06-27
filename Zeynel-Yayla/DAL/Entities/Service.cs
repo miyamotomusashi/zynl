@@ -21,10 +21,12 @@ namespace DAL.Entities
         public int SortOrder { get; set; }
         public DateTime TimeCreated { get; set; }
         [Display(Name = "Dil")]
-        [Required(ErrorMessage = "Dili Seçiniz.")]
+        
         public string Language { get; set; }
         public string PageSlug { get; set; }
         public bool Deleted { get; set; }
+        [Display(Name = "Anasayfada Göster Ek Doya")]
+        public bool ShowInMenu { get; set; }
         public int ServiceGroupId { get; set; }
     }
 }

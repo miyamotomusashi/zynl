@@ -11,6 +11,8 @@ using BLL.ServiceBL;
 using DAL.Entities;
 using web.Areas.Admin.Filters;
 using BLL.ServiceGroupBL;
+using System.Drawing;
+using BLL.PhotoBL;
 
 namespace web.Areas.Admin.Controllers
 {
@@ -31,14 +33,11 @@ namespace web.Areas.Admin.Controllers
 
         public ActionResult OurServices()
         {
-            FillLanguagesList();
+         
 
-            string lang = "";
-            if (RouteData.Values["lang"] == null)
-                lang = "tr";
-            else lang = RouteData.Values["lang"].ToString();
+         
 
-            var servicepage = ServiceManager.GetOurServices(lang);
+            var servicepage = ServiceManager.GetOurServices("tr");
             return View(servicepage);
         }
 
@@ -59,13 +58,13 @@ namespace web.Areas.Admin.Controllers
 
         public ActionResult AddService()
         {
-            FillLanguagesList();
+        
             return View();
         }
 
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult AddService(Service newmodel, HttpPostedFileBase uploadfile, HttpPostedFileBase uploadimage)
+        public ActionResult AddService(Service newmodel, HttpPostedFileBase uploadfile, HttpPostedFileBase uploadimage,IEnumerable<HttpPostedFileBase> attachments)
         {
             FillLanguagesList();
 
@@ -75,6 +74,56 @@ namespace web.Areas.Admin.Controllers
                 newmodel.PageSlug = Utility.SetPagePlug(newmodel.Name);
                 newmodel.TimeCreated = DateTime.Now;
                 ViewBag.ProcessMessage = ServiceManager.AddService(newmodel);
+
+                 foreach (var item in attachments)
+                {
+                    if (item != null && item.ContentLength > 0)
+                    {
+                        item.SaveAs(Server.MapPath("/Content/images/userfiles/")+item.FileName);
+                        Random random = new Random();
+                        int rand = random.Next(1000, 99999999);
+                        string path = Utility.SetPagePlug(newmodel.Name) + "_" + rand + Path.GetExtension(item.FileName);
+                        new ImageHelper(1020, 768).SaveThumbnail(item, "/Content/images/userfiles/", path);
+
+                        rand = random.Next(1000, 99999999);
+                        string thumbnail = Utility.SetPagePlug(newmodel.Name) + "_" + rand + Path.GetExtension(item.FileName);
+
+                       // Image img = Image.FromFile(Server.MapPath("/Content/images/userfiles/") + item.FileName);
+
+                        Bitmap bmp = new Bitmap(Server.MapPath("/Content/images/userfiles/") + item.FileName);
+
+                    Bitmap bmp2 = new Bitmap(bmp);
+
+                  using (Bitmap Orgbmp = bmp2)
+                   {
+
+                       int sabit = 90;
+                       Size Boyut = new Size(210, 125);
+                       Bitmap ReSizedThmb = new Bitmap(Orgbmp, Boyut);
+                        ReSizedThmb.Save(Server.MapPath("/Content/images/userfiles/")+thumbnail);
+                       bmp.Dispose();
+                         bmp2.Dispose();
+                       Orgbmp.Dispose();
+                       GC.Collect();
+                    }
+
+                       //new ImageHelper(300, 280).ResizeFromStream("/Content/images/userfiles/",thumbnail,img);
+                        Photo p = new Photo();
+                        p.CategoryId = (int)PhotoType.Service;
+                        p.ItemId = newmodel.ServiceId;
+                        p.Path = "/Content/images/userfiles/" + path;
+                        p.Thumbnail = "/Content/images/userfiles/" + thumbnail;
+                        p.Online = true;
+                        p.SortOrder = 9999;
+                        p.Language = "tr";
+                        p.TimeCreated = DateTime.Now;
+                        p.Title = newmodel.Name;
+                        PhotoManager.Save(p);
+                    }
+                 }
+
+
+
                 ModelState.Clear();
 
                 return View();
@@ -95,6 +144,8 @@ namespace web.Areas.Admin.Controllers
                 if (isnumber)
                 {
                     Service editrecord = ServiceManager.GetServiceById(nid);
+                    var photos = PhotoManager.GetList(5, nid);
+                    ViewBag.Photos = photos;
                     return View(editrecord);
                 }
                 else
@@ -104,9 +155,12 @@ namespace web.Areas.Admin.Controllers
                 return View();
         }
 
+
+
+
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult EditService(Service newmodel, HttpPostedFileBase uploadfile, HttpPostedFileBase uploadimage)
+        public ActionResult EditService(Service newmodel, HttpPostedFileBase uploadfile, HttpPostedFileBase uploadimage, IEnumerable<HttpPostedFileBase> attachments)
         {
             FillLanguagesList();
 
@@ -123,6 +177,66 @@ namespace web.Areas.Admin.Controllers
                     {
                         newmodel.ServiceId = nid;
                         ViewBag.ProcessMessage = ServiceManager.EditService(newmodel);
+
+
+                        foreach (var item in attachments)
+                        {
+                            if (item != null && item.ContentLength > 0)
+                            {
+                                item.SaveAs(Server.MapPath("/Content/images/userfiles/") + item.FileName);
+                                Random random = new Random();
+                                int rand = random.Next(1000, 99999999);
+                                string path = Utility.SetPagePlug(newmodel.Name) + "_" + rand + Path.GetExtension(item.FileName);
+                                new ImageHelper(1020, 768).SaveThumbnail(item, "/Content/images/userfiles/", path);
+
+                                rand = random.Next(1000, 99999999);
+                                string thumbnail = Utility.SetPagePlug(newmodel.Name) + "_" + rand + Path.GetExtension(item.FileName);
+
+                                // Image img = Image.FromFile(Server.MapPath("/Content/images/userfiles/") + item.FileName);
+
+                                Bitmap bmp = new Bitmap(Server.MapPath("/Content/images/userfiles/") + item.FileName);
+
+                                Bitmap bmp2 = new Bitmap(bmp);
+
+                                using (Bitmap Orgbmp = bmp2)
+                                {
+
+                                    int sabit = 90;
+                                    Size Boyut = new Size(210, 125);
+                                    Bitmap ReSizedThmb = new Bitmap(Orgbmp, Boyut);
+                                    ReSizedThmb.Save(Server.MapPath("/Content/images/userfiles/") + thumbnail);
+                                    bmp.Dispose();
+                                    bmp2.Dispose();
+                                    Orgbmp.Dispose();
+                                    GC.Collect();
+                                }
+
+                                //new ImageHelper(300, 280).ResizeFromStream("/Content/images/userfiles/",thumbnail,img);
+                                Photo p = new Photo();
+                                p.CategoryId = (int)PhotoType.Service;
+                                p.ItemId = newmodel.ServiceId;
+                                p.Path = "/Content/images/userfiles/" + path;
+                                p.Thumbnail = "/Content/images/userfiles/" + thumbnail;
+                                p.Online = true;
+                                p.SortOrder = 9999;
+                                p.Language = "tr";
+                                p.TimeCreated = DateTime.Now;
+                                p.Title = newmodel.Name;
+                                PhotoManager.Save(p);
+                            }
+                        }
+
+
+
+
+
+
+
+
+
+
+
+
                         return View(newmodel);
                     }
                     else
@@ -198,6 +312,22 @@ namespace web.Areas.Admin.Controllers
             bool issorted = ServiceManager.SortRecords(idsList);
             return Json(issorted);
         }
+
+        public JsonResult SortPhotos(string list)
+        {
+            JsonList psl = (new JavaScriptSerializer()).Deserialize<JsonList>(list);
+            string[] idsList = psl.list;
+            bool issorted = PhotoManager.SortRecords(idsList);
+            return Json(issorted);
+        }
+
+
+        public JsonResult DeletePhoto(int id)
+        {
+            bool isdelete = PhotoManager.Delete(id);
+            return Json(isdelete);
+        }
+
         public class JsonList
         {
             public string[] list { get; set; }

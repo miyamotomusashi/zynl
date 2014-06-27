@@ -31,7 +31,7 @@ namespace web.Areas.Admin.Controllers
             //var languages = LanguageManager.GetLanguages();
             //var list = new SelectList(languages, "Culture", "Language");
             //ViewBag.LanguageList = list;
-            ImageHelperNew.DestroyImageCashAndSession(286, 210);
+            ImageHelperNew.DestroyImageCashAndSession(1920, 1080);
             return View();
         }
 

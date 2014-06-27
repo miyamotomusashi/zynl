@@ -21,6 +21,15 @@ namespace BLL.ServiceBL
             }
         }
 
+        public static List<Service> GetServiceList()
+        {
+            using (MainContext db = new MainContext())
+            {
+                var list = db.Service.Where(x=>x.Online==true && x.Deleted==false && x.ShowInMenu==true).OrderBy(d => d.SortOrder).ToList();
+                return list;
+            }
+        }
+
         public static OurServices GetOurServices(string language)
         {
             using (MainContext db = new MainContext())
@@ -68,7 +77,7 @@ namespace BLL.ServiceBL
         {
             using (MainContext db = new MainContext())
             {
-                var list = db.Service.Where(d => d.Language == language && d.Online == true).OrderBy(d => d.SortOrder).ToList();
+                var list = db.Service.Where(d =>  d.Online == true && d.ShowInMenu==true).OrderBy(d => d.SortOrder).ToList();
                 return list;
             }
         }

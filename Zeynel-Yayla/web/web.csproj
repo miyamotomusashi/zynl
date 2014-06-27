@@ -42,13 +42,11 @@
     <Reference Include="CaptchaMvc">
       <HintPath>..\packages\CaptchaMvc.Mvc4.1.4.1\lib\net40-full\CaptchaMvc.dll</HintPath>
     </Reference>
-    <Reference Include="CKEditor.NET, Version=3.6.2.0, Culture=neutral, PublicKeyToken=e379cdf2f8354999, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>D:\PROJELER\MVC-PROJELERİ\myBLOG\myBLOG\bin\CKEditor.NET.dll</HintPath>
+    <Reference Include="CKEditor.NET">
+      <HintPath>..\..\..\..\..\Desktop\CKEditor.NET.dll</HintPath>
     </Reference>
-    <Reference Include="CKFinder, Version=2.1.0.1326, Culture=neutral, PublicKeyToken=579e7adc719a1423, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>D:\PROJELER\MVC-PROJELERİ\myBLOG\myBLOG\bin\CKFinder.dll</HintPath>
+    <Reference Include="CKFinder">
+      <HintPath>..\..\..\..\..\Desktop\CKFinder.dll</HintPath>
     </Reference>
     <Reference Include="ImageUploadAndCrop">
       <HintPath>..\..\..\..\..\Desktop\ImageUploadAndCrop.dll</HintPath>
@@ -2939,6 +2937,7 @@
     <None Include="Properties\PublishProfiles\deneysan.pubxml" />
     <None Include="Properties\PublishProfiles\ist.pubxml" />
     <None Include="Properties\PublishProfiles\kontrolmatik.pubxml" />
+    <None Include="Properties\PublishProfiles\zynl.pubxml" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="HTMLTemplate\imza.png" />
     <Content Include="HTMLTemplate\Receipt.htm" />
@@ -3129,6 +3128,7 @@
     <Content Include="Views\FReferences\Index.cshtml" />
     <Content Include="Views\FReferences\Detail.cshtml" />
     <Content Include="Views\FHumanResources\Index.cshtml" />
+    <Content Include="Views\Shared\Partial\_footeraddress.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

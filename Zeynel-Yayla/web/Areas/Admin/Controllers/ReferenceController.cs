@@ -43,7 +43,7 @@ namespace web.Areas.Admin.Controllers
                 {
                     Random random = new Random();
                     int rand = random.Next(1000, 99999999);
-                    new ImageHelper(240, 240).SaveThumbnail(uploadfile, "/Content/images/references/", Utility.SetPagePlug(newmodel.ReferenceName) + "_" + rand + Path.GetExtension(uploadfile.FileName));
+                    new ImageHelper(240, 240).SaveThumbnail(uploadfile,"/Content/images/references/", Utility.SetPagePlug(newmodel.ReferenceName) + "_" + rand + Path.GetExtension(uploadfile.FileName));
                     newmodel.Logo = "/Content/images/references/" + Utility.SetPagePlug(newmodel.ReferenceName) + "_" + rand + Path.GetExtension(uploadfile.FileName);
                 }
                 else

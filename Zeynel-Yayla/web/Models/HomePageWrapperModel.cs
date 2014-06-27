@@ -12,15 +12,16 @@ namespace web.Models
         public IEnumerable<References> references { get; set; }
         public IEnumerable<Document> docs { get; set; }
         public IEnumerable<Photo> photos { get; set; }
+       
         public IEnumerable<SectorGroup> sectorgroup { get; set; }
         public IEnumerable<ProductGroup> prodgroups { get; set; }
-        public IEnumerable<ServiceGroup> servicegroups { get; set; }
+        public IEnumerable<Service> servicegroups { get; set; }
         public Contact contact { get; set; }
 
         public HomePageWrapperModel()
         {
         }
-        public HomePageWrapperModel(Contact contact, IEnumerable<ServiceGroup> servicegroups, IEnumerable<ProductGroup> prodgroups, IEnumerable<SectorGroup> sectorgroup, IEnumerable<News> news, IEnumerable<References> references, IEnumerable<Document> docs, IEnumerable<Photo> photos)
+        public HomePageWrapperModel(Contact contact, IEnumerable<Service> servicegroups, IEnumerable<ProductGroup> prodgroups, IEnumerable<SectorGroup> sectorgroup, IEnumerable<News> news, IEnumerable<References> references, IEnumerable<Document> docs, IEnumerable<Photo> photos)
         {
             this.news = news;
             this.references = references;

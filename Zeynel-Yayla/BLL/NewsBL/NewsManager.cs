@@ -35,7 +35,7 @@ namespace BLL.NewsBL
         {
             using (MainContext db = new MainContext())
             {
-                var news_list = db.News.Where(d => d.Deleted == false && d.Language == language && d.Online == true).OrderByDescending(d => d.TimeCreated).OrderBy(d => d.SortOrder).ToList();
+                var news_list = db.News.Where(d => d.Deleted == false && d.Language == language && d.Online == true && d.ShowInMenu==true).OrderByDescending(d => d.TimeCreated).OrderBy(d => d.SortOrder).ToList();
                 return news_list;
             }
         }
@@ -164,6 +164,7 @@ namespace BLL.NewsBL
                         record.Header = newsmodel.Header;
                         record.Language = newsmodel.Language;
                         record.Content = newsmodel.Content;
+                        record.ShowInMenu = newsmodel.ShowInMenu;
                         record.TypeId = newsmodel.TypeId;
                         if (!string.IsNullOrEmpty(newsmodel.NewsImage))
                         {

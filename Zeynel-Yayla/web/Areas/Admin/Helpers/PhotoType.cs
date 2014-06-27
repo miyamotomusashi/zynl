@@ -11,6 +11,7 @@ namespace web.Areas.Admin.Helpers
         ProjectReference=1,
         Estate=2,
         News=3,
-        Reference = 4
+        Reference = 4,
+        Service = 5
     }
 }

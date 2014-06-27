@@ -51,21 +51,14 @@
 
                 </p>
                 <fieldset>
-                    <legend>Haber Resmi</legend>
+                    <legend>Fotoğraf</legend>
                     <div id="uploadPartial">
                         @Html.Partial("_imageUploadAndCrop")
                     </div>
                 </fieldset>
-                
-                
-
              @*   <p style="float: left; margin-right: 4px !important;">
                     <label>Fotoğraflar</label>
                 </p>*@
-
-            
-                <div style="height: 40px; clear: both;"></div>
-
                 <p>
                     @Html.TextAreaFor(m => m.Content, new { id = "txtcontent", @class = "required" })
                     @Html.ValidationMessageFor(m => m.Content)
@@ -76,6 +69,12 @@
                     @Html.TextBox("txtdate", "", new { @class = "textwidth10" })
                     @* @Html.TextBox("txtdate")*@
                 </p>
+                 <p>
+                    @Html.Label("Ana sayfada Göster")
+                    @Html.CheckBoxFor(x=>x.ShowInMenu)
+                    @* @Html.TextBox("txtdate")*@
+                </p>
+
                 <br />
                 <input type="submit" value="Kaydet" id="btnsave" />
 
@@ -91,7 +90,6 @@
     <script src="~/Areas/Admin/Content/scripts/myscripts/MessageBox.js"></script>
     <script src="~/Areas/Admin/Content/scripts/plugins/jquery.validate.js"></script>
     <script src="~/Areas/Admin/Content/scripts/plugins/jquery.validate.unobtrusive.js"></script>
-    @*@System.Web.Optimization.Scripts.Render("~/admin/editor")*@
     <script src="~/Areas/Admin/Content/CKEditor/ckeditor/ckeditor.js"></script>
     <script src="~/Areas/Admin/Content/CKEditor/ckfinder/ckfinder.js"></script>
     <script src="~/Areas/Admin/Content/scripts/myscripts/CKEditorCreate.js"></script>

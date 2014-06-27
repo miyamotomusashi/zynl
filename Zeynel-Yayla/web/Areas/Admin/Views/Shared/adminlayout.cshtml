@@ -38,7 +38,6 @@
             </p>
         </div>
         <nav class="header-middle">
-
             @if (!User.Identity.Name.ToString().ToLower().Equals("muhasebe"))
             {
                 <ul id="nav" class="fr ">
@@ -53,61 +52,38 @@
                             <li><a href="/yonetim/sayfataglari/1">Sayfa Tanımları</a></li>*@
                         </ul>
                     </li>
-                    <li class="content"><a class="dashboard" href="#">Ürünler</a>
+                    <li class="content"><a class="settings" href="#">Ürünler</a>
                         <ul>
                             <li><a href="/yonetim/emlaklistesi">Ürün Kategorileri</a></li>
                              <li><a href="/yonetim/brifingler">Ürün Listesi</a></li>
                         </ul>
                     </li>
-                    <li class="content"><a class="dashboard" href="#">Bize Ulaşın</a>
+                    <li class="content"><a class="settings" href="#">Hizmetlerimiz</a>
                         <ul>
-                            <li><a href="/yonetim/iletisim">Adres Bilgileri</a></li>
-                            <li><a href="/yonetim/insankaynaklari">Kariyer Olanakları</a></li>
-                        </ul>
-                    </li>
-                    <li class="content"><a class="dashboard" href="#">Haberler</a>
-                        <ul>
-                            <li><a href="/yonetim/haberler">Tüm Haberler</a></li>
-                        </ul>
-                    </li>
-                    <li class="content"><a class="dashboard" href="#">Referanslar</a>
-                        <ul>
-                            <li><a href="/yonetim/referanslar">Firmalar ve Markalar</a></li>
-                          @*  <li><a href="/yonetim/kurumsal/nedenbiz">Neden Biz?</a></li>*@
-                        </ul>
-                    </li>
-                    <li class="content"><a class="dashboard" href="#">Hizmetlerimiz</a>
-                        <ul>
-                            <li><a href="/yonetim/hizmetlerimiz">Hizmetlerimiz</a></li>
                             <li><a href="/yonetim/hizmetler">Hizmetler</a></li>
-                            <li><a href="/yonetim/sektorgruplari">Sektörler</a></li>
                         </ul>
                     </li>
-                    <li class="content"><a class="dashboard" href="#">Hakkımızda</a>
+                    <li class="content"><a class="settings" href="#">İçerik İşlemleri</a>
                         <ul>
-                            <li><a href="/yonetim/kurumsal/hakkimizda">Kurumsal</a></li>
-          
+                             <li><a href="/yonetim/banner">Slayt Fotoğrafları</a></li>
+                            <li><a href="/yonetim/iletisim">İletişim Bilgileri</a></li>
+                             <li><a href="/yonetim/haberler"> Haberler</a></li>
+                               <li><a href="/yonetim/insankaynaklari">İnsan Kaynakları</a></li>
+                             <li><a href="/yonetim/referanslar">Referanslar</a></li>
                         </ul>
-                        <li class="content"><a class="dashboard" href="#">Anasayfa</a>
-                            <ul>
-                                <li><a href="/yonetim/banner">Slayt Fotoğrafları</a></li>
-                            </ul>
-                        </li>
-                    <!-- Nav - End Users -->
-                    <!-- Nav - Start Content -->
-                    @* <li class="content"><a class="content" href="#">Ürün İşlemleri</a>
-         <ul>
-          <li><a href="/yonetim/urungruplari">Ürün Kategorileri</a></li>
-          <li><a href="/yonetim/urunlistesi">Ürünler</a></li>
-        </ul>
-      </li>*@
-                    <!-- Nav - End Dashboard -->
-                </ul> 
-            }
-
+                    </li>
+                     <li class="content"><a class="settings" href="#">Firma Bilgileri</a>
+                        <ul>
+                             <li><a href="/yonetim/kurumsal/hakkimizda">Kurumsal</a></li>
+                            <li><a href="/yonetim/iletisim">İletişim</a></li>
+                       
+                        </ul>
+                    </li>
+                 </ul> 
+              }
             <div style="float: left">
-                <a href="http://www.venueistanbul.com.tr" target="_blank">
-                    <img src="~/Areas/Admin/Content/images/logo.png" height="55" width="145" /></a>
+                <a href="http://www.zeynelyayla.com.tr" target="_blank">
+                    <img src="~/Areas/Admin/Content/images/logo.png" height="40" width="135" style="margin-top:8px;" /></a>
             </div>
             <span style="line-height: 56px; float: left; color: white; font-size: 10px; margin-left: 15px;">İÇERİK YÖNETİM v2.5</span>
 

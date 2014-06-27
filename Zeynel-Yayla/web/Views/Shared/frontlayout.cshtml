@@ -70,7 +70,8 @@
       </div>
     </div>
   </div>
-    @{Html.RenderPartial("Partial/_topmenu");}
+    @*@{Html.RenderPartial("Partial/_topmenu");}*@
+    @{Html.RenderAction("GetTopMenu","FHome");}
     <div class="col-md-12 noPadding sectionforPage">
     @RenderSection("breadcrumb",true)
 
@@ -85,51 +86,9 @@
 </div>
 
    
-<div id="footer">
-  <div class="container">
-    <div class="col-md-12 noPadding">
-      <div class="col-md-9">
-        <div class="col-md-3"> 
-        <a href="index.html" class="footerLogo"><img src="/Content/Images/logo-2.png" border="0"/></a>
-        <a href="http://www.safakavize.com/" class="safakLogo" target="_blank"><img src="/Content/Images/safak-avize.png" border="0"/></a> 
-        </div>
-        <div class="col-md-3">
-          <h6>ANASAYFA</h6>
-          <ul>
-            <li><a href="kurumsal.html">Kurumsal</a></li>
-            <li><a href="haberler.html">Haberler</a></li>
-            <li><a href="referanslar.html">Referanslar</a></li>
-            <li><a href="insankaynaklari.html">İnsan Kaynakları</a></li>
-            <li><a href="iletisim.html">İletişim</a></li>
-          </ul>
-        </div>
-        <div class="col-md-3">
-          <h6>ÜRÜNLER</h6>
-          <ul>
-            <li><a href="kilitparketaslari.html">Kilitli Parke Taşları</a></li>
-            <li><a href="bordurtaslari.html">Bordür Taşları</a></li>
-            <li><a href="drenajtaslari.html">Drenaj Taşları</a></li>
-            <li><a href="sevvecicekler.html">Şev ve Çiçekler</a></li>
-          </ul>
-        </div>
-        <div class="col-md-3">
-          <h6>HİZMETLER</h6>
-          <ul>
-            <li><a href="projelendirme.html">Projelendirme</a></li>
-            <li><a href="nakliye.html">Nakliye</a></li>
-            <li><a href="uygulama.html">Uygulama</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-md-3 contactInfo">
-        <p><strong>ADRES:</strong> Yıldız mah. Mustafa Kemal Cad. No:20 
-          ŞİŞLİ/İSTANBUL</p>
-        <p><strong>TEL:</strong> 0.212.444 55 88</p>
-        <p><strong>FAX: </strong>0.212.444 55 66</p>
-      </div>
-    </div>
-  </div>
-</div>
+
+       @{Html.RenderAction("GetAddress","FHome");}
+  
 <div id="footerCopyright">
   <div class="container">
     <div class="col-md-6  copyright"> © Copyright ZEYNELYAYLA 2014 </div>

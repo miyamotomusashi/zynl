@@ -41,6 +41,8 @@ namespace DAL.Entities
        
         public string Language { get; set; }
         public string PageSlug { get; set; }
+        [Display(Name = "Anasayfada Göster")]
+        public bool ShowInMenu { get; set; }
         public int SortOrder { get; set; }
     }
 }

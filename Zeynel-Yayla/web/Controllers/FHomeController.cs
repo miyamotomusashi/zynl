@@ -12,6 +12,7 @@ using BLL.ContactBL;
 using System.Collections.Generic;
 using DAL.Context;
 using DAL.Entities;
+using BLL.ServiceBL;
 
 namespace web.Controllers
 {
@@ -28,10 +29,30 @@ namespace web.Controllers
         public ActionResult Index()
         {
             HomePageWrapperModel model = new HomePageWrapperModel();
-            model.photos = PhotoManager.GetList("tr",0);
+            model.photos = PhotoManager.GetListForFront("tr",0);
+            model.news = NewsManager.GetNewsListForFront("tr");
+            model.servicegroups = ServiceManager.GetServiceList();
+            model.references = ReferenceManager.GetReferenceListForFront("tr");
   
             return View(model);
         }
+
+        [ChildActionOnly]
+        public PartialViewResult GetAddress()
+        {
+            Contact cont=ContactManager.GetContact();
+           ViewBag.Services = ServiceManager.GetServiceListForFront("tr").Take(3);
+            return PartialView("Partial/_footeraddress",cont);
+        }
+
+        [ChildActionOnly]
+        public PartialViewResult GetTopMenu()
+        {
+            ViewBag.Services = ServiceManager.GetServiceListForFront("tr");
+            return PartialView("Partial/_topmenu");
+        }
+
+
 
         public JsonResult GetImages()
         {

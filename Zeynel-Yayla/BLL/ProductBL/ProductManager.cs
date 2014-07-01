@@ -913,7 +913,12 @@ namespace BLL.ProductBL
         }
 
 
-       
-        
+
+
+
+        public static object GetProductGroupList()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

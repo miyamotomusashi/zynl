@@ -30,5 +30,10 @@ namespace DAL.Entities
         public string Language { get; set; }
         public string PageSlug { get; set; }
         public int SortNumber { get; set; }
+
+        public static object GetProductGroupList()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

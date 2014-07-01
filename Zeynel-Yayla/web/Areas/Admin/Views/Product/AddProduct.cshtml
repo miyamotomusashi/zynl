@@ -46,18 +46,6 @@
                         @Html.ValidationMessageFor(m => m.ProductSubGroupId)
                         <img src="/Areas/Admin/Content/images/icons/16/loader.gif" id="imgloader2" class="imgloader" />
                     </p>
-                    <p id="g2" style="display: none">
-                        @Html.Label("Ürün Alt Grubu")
-                        @Html.DropDownListFor(m => m.ProductSubbestGroupId, (IEnumerable<SelectListItem>)ViewBag.subbestgrouplist, new { @class = "required" })
-                        @Html.ValidationMessageFor(m => m.ProductSubbestGroupId)
-                        <img src="/Areas/Admin/Content/images/icons/16/loader.gif" id="imgloader3" class="imgloader" />
-                    </p>
-                    <p id="g3" style="display: none">
-                        @Html.Label("Ürün Alt Grubu")
-                        @Html.DropDownListFor(m => m.ProductSubSubbestGroupId, (IEnumerable<SelectListItem>)ViewBag.subsubbestgrouplist, new { @class = "required" })
-                        @Html.ValidationMessageFor(m => m.ProductSubSubbestGroupId)
-                        <img src="/Areas/Admin/Content/images/icons/16/loader.gif" id="imgloader4" class="imgloader" />
-                    </p>
                     <p>
                         @Html.LabelFor(m => m.Name)
                         @Html.TextBoxFor(m => m.Name, new { @class = "textwidth50", Rows = "5" })

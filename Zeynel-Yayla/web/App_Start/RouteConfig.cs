@@ -23,6 +23,8 @@ namespace web
             routes.MapRoute("referansdetay", "referansdetay/{id}", new { action = "Detail", Controller = "FReferences" });
             routes.MapRoute("insankaynaklari", "insankaynaklari", new { action = "Index", Controller = "FHumanResources" });
 
+            routes.MapRoute("hizmetler", "hizmetler/{id}/{page}", new { action = "Index", Controller = "FServices" });
+
             routes.MapRoute("siteharita_tr", "tr/siteharitasi", new { action = "SiteHarita", Controller = "FInstitutional" });
             routes.MapRoute("siteharita_en", "en/sitemap", new { action = "SiteHarita", Controller = "FInstitutional" });
 

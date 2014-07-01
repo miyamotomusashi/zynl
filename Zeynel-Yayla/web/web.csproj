@@ -236,6 +236,7 @@
     <Compile Include="Controllers\FInstitutionalController.cs" />
     <Compile Include="Controllers\FNewsController.cs" />
     <Compile Include="Controllers\FSearchController.cs" />
+    <Compile Include="Controllers\FServicesController.cs" />
     <Compile Include="Controllers\FSharedController.cs" />
     <Compile Include="Controllers\FSolutionPartnerController.cs" />
     <Compile Include="Areas\Admin\Controllers\MediaController.cs" />
@@ -256,6 +257,7 @@
     <Compile Include="Models\ReferenceWrapperModel.cs" />
     <Compile Include="Models\SectorSubWrapperModel.cs" />
     <Compile Include="Models\SectorWrapperModel.cs" />
+    <Compile Include="Models\ServiceModel.cs" />
     <Compile Include="Models\ServiceSubWrapperModel.cs" />
     <Compile Include="Models\ServiceWrapperModel.cs" />
     <Compile Include="Models\ProductDetailWrapperModel.cs" />
@@ -2937,6 +2939,7 @@
     <None Include="Properties\PublishProfiles\deneysan.pubxml" />
     <None Include="Properties\PublishProfiles\ist.pubxml" />
     <None Include="Properties\PublishProfiles\kontrolmatik.pubxml" />
+    <None Include="Properties\PublishProfiles\zeynel.pubxml" />
     <None Include="Properties\PublishProfiles\zynl.pubxml" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="HTMLTemplate\imza.png" />
@@ -3129,6 +3132,7 @@
     <Content Include="Views\FReferences\Detail.cshtml" />
     <Content Include="Views\FHumanResources\Index.cshtml" />
     <Content Include="Views\Shared\Partial\_footeraddress.cshtml" />
+    <Content Include="Views\FServices\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

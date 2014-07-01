@@ -24,16 +24,7 @@
         @Html.ValidationSummary(true)
         <fieldset>
         <legend>Hizmet Düzenle</legend>
-        <p>
-            @Html.LabelFor(m=>m.Language)
-            @Html.DropDownListFor(m=>m.Language,(IEnumerable<SelectListItem>)ViewBag.LanguageList,"Dil Seçiniz...")
-            @Html.ValidationMessageFor(m=>m.Language)
-        </p>
-        <p>
-            @Html.Label("Hizmet Grubu")
-            @Html.DropDownListFor(m=>m.ServiceGroupId,(IEnumerable<SelectListItem>)ViewBag.GroupList,"Hizmet Grubu...")
-            @Html.ValidationMessageFor(m=>m.ServiceGroupId)
-        </p>
+       
          <p>
             @Html.LabelFor(m=>m.Name)
             @Html.TextBoxFor(m=>m.Name, new { @class="textwidth50"})

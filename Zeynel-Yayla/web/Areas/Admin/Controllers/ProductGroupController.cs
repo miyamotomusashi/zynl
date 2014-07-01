@@ -20,40 +20,27 @@ namespace web.Areas.Admin.Controllers
         public ActionResult Index()
         {
             string lang = FillLanguagesList();
-            var grouplist = ProductManager.GetProductGroupList(lang);
+            web.Areas.Admin.Models.VMProductGroupModel grouplist = new Models.VMProductGroupModel();
+            grouplist.ProductGroup = ProductManager.GetProductGroupList(lang);
             return View(grouplist);
         }
 
 
         [HttpPost]
-        public ActionResult Index(string drplanguage, string txtname,HttpPostedFileBase uploadfile)
+        public ActionResult Index(string txtname,int topProductGroupId)
         {
             string lang = FillLanguagesList();
             if (ModelState.IsValid)
             {
                 ProductGroup model = new ProductGroup();
                 model.GroupName = txtname;
-                model.Language = drplanguage;
-                if (uploadfile != null && uploadfile.ContentLength > 0)
-                {
-                    Random random = new Random();
-                    int rand = random.Next(1000, 99999999);
-                    new ImageHelper(280, 240).SaveThumbnail(uploadfile, "/Content/images/productcategory/", Utility.SetPagePlug(model.GroupName) + "_" + rand + Path.GetExtension(uploadfile.FileName));
-                    model.GroupImage = "/Content/images/productcategory/" + Utility.SetPagePlug(model.GroupName) + "_" + rand + Path.GetExtension(uploadfile.FileName);
-                }
-                else
-                {
-                    model.GroupImage = "/Content/images/front/noimage.jpeg";
-                }
-
+                model.Language = "tr";
                 model.PageSlug = Utility.SetPagePlug(txtname);
+                model.TopProductId = topProductGroupId;
                 ViewBag.ProcessMessage = ProductManager.AddProductGroup(model);
-
-                var grouplist = ProductManager.GetProductGroupList(lang);
-
+                web.Areas.Admin.Models.VMProductGroupModel grouplist = new Models.VMProductGroupModel();
+                grouplist.ProductGroup = ProductManager.GetProductGroupList(lang);
                 return View(grouplist);
-
-
             }
             return View();
         }

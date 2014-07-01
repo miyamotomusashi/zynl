@@ -14,7 +14,7 @@ namespace DAL.Entities
         public string GroupName { get; set; }
 
         [Display(Name = "Grup Adı")]
-        public string TopProductId { get; set; }
+        public int TopProductId { get; set; }
 
         public string GroupImage { get; set; }
 

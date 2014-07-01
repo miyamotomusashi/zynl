@@ -73,7 +73,7 @@
     @*@{Html.RenderPartial("Partial/_topmenu");}*@
     @{Html.RenderAction("GetTopMenu","FHome");}
     <div class="col-md-12 noPadding sectionforPage">
-    @RenderSection("breadcrumb",true)
+    @RenderSection("breadcrumb",false)
 
     <div class="col-md-3 search">
       <input type="text"  placeholder="Arama" />

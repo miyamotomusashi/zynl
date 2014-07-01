@@ -222,6 +222,7 @@
     <Compile Include="Areas\Admin\Helpers\ImageResizer.cs" />
     <Compile Include="Areas\Admin\Helpers\PhotoType.cs" />
     <Compile Include="Areas\Admin\Helpers\Utility.cs" />
+    <Compile Include="Areas\Admin\Models\VMProductGroupModel.cs" />
     <Compile Include="Areas\Admin\Models\LoginModel.cs" />
     <Compile Include="Controllers\FEstatesController.cs" />
     <Compile Include="Controllers\FHumanResourcesController.cs" />
@@ -1575,6 +1576,7 @@
     <Content Include="Areas\Admin\Content\images\sunny.png" />
     <Content Include="Areas\Admin\Content\images\yeni.gif" />
     <Content Include="Areas\Admin\Content\images\yeni.png" />
+    <Content Include="Areas\Admin\Content\scripts\pagescripts\product\ProductCategory.js" />
     <Content Include="Areas\Admin\Content\scripts\pagescripts\account\login.js" />
     <Content Include="Areas\Admin\Content\scripts\pagescripts\bank\banklist.js" />
     <Content Include="Areas\Admin\Content\scripts\pagescripts\contact\contact.js" />
@@ -2339,6 +2341,7 @@
     <Content Include="Areas\Admin\Content\scripts\plugins\moneyconverter.js" />
     <Content Include="Areas\Admin\Content\scripts\plugins\numeric.js" />
     <Content Include="Areas\Admin\Content\scripts\plugins\prettify.js" />
+    <Content Include="Areas\Admin\Content\scripts\plugins\tablesorter\jquery.nestable.js" />
     <Content Include="Areas\Admin\Content\scripts\plugins\tablesorter\jquery.table.filter.min.js" />
     <Content Include="Areas\Admin\Content\scripts\plugins\tablesorter\jquery.tablesorter.min.js" />
     <Content Include="Areas\Admin\Content\scripts\plugins\tablesorter\jquery.tablesorter.pager.js" />
@@ -2355,6 +2358,7 @@
     <Content Include="Areas\Admin\Content\scripts\plugins\_references.js" />
     <Content Include="Areas\Admin\Content\styles\base.css" />
     <Content Include="Areas\Admin\Content\styles\calendar.css" />
+    <Content Include="Areas\Admin\Content\styles\nestedsortable.css" />
     <Content Include="Areas\Admin\Content\styles\extensions.css" />
     <Content Include="Areas\Admin\Content\styles\extras.css" />
     <Content Include="Areas\Admin\Content\styles\forms.css" />
@@ -2933,6 +2937,8 @@
     <Content Include="Areas\Admin\Views\Brifing\Detail.cshtml" />
     <Content Include="Areas\Admin\Views\Brifing\DetailInfo.cshtml" />
     <Content Include="Areas\Admin\Views\Tags\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_submenu.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_subsubmenu.cshtml" />
     <None Include="Properties\PublishProfiles\deneme.pubxml" />
     <None Include="Properties\PublishProfiles\deneysan.pubxml" />
     <None Include="Properties\PublishProfiles\ist.pubxml" />

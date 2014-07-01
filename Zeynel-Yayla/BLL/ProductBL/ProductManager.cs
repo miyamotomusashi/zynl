@@ -240,7 +240,7 @@ namespace BLL.ProductBL
         {
             using (MainContext db = new MainContext())
             {
-                var list = db.ProductGroup.Where(d => d.Deleted == false && d.Language == language).OrderBy(d => d.SortNumber).ToList();
+                var list = db.ProductGroup.Where(d => d.Deleted == false && d.Language == language && d.ProductGroupId != 4).OrderBy(d => d.SortNumber).ToList();
                 return list;
             }
         }
